@@ -5,11 +5,11 @@ module.exports = {
 
     // Database Configuration
     DATABASE: {
-        HOST: 'monorail.proxy.rlwy.net',  // Railway's public proxy
+        HOST: 'mysql.railway.internal',  // Railway's public proxy
         USER: 'root',
-        PASSWORD: 'your-mysql-password',   // From Railway MySQL Variables tab
-        DATABASE: 'railway',               // From Railway MySQL Variables tab
-        PORT: 12345,                       // MYSQLPORT from Railway (NOT 3306)
+        PASSWORD: 'uAdkNsRjZsYMgtOfTANafXfZVlooZXkJ',
+        DATABASE: 'railway',
+        PORT: 3306,
         CONNECTION_LIMIT: 10
     },
 
