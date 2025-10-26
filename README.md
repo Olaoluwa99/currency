@@ -21,8 +21,8 @@ A RESTful API that fetches country data from external APIs, stores it in MySQL, 
 
 1. Clone the repository:
 ```bash
-git clone <your-repo-url>
-cd country-currency-api
+git clone https://github.com/Olaoluwa99/currency
+cd currency
 ```
 
 2. Install dependencies:
