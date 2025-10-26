@@ -4,14 +4,23 @@ module.exports = {
     NODE_ENV: 'production',
 
     // Database Configuration
+    // Database Configuration
     DATABASE: {
+        HOST: process.env.MYSQLHOST,
+        USER: process.env.MYSQLUSER,
+        PASSWORD: process.env.MYSQLPASSWORD,
+        DATABASE: process.env.MYSQLDATABASE,
+        PORT: process.env.MYSQLPORT, // This will be a number, not a string
+        CONNECTION_LIMIT: 10
+    },
+    /*DATABASE: {
         HOST: 'mysql.railway.internal',  // Railway's public proxy
         USER: 'root',
         PASSWORD: 'uAdkNsRjZsYMgtOfTANafXfZVlooZXkJ',
         DATABASE: 'railway',
         PORT: 3306,
         CONNECTION_LIMIT: 10
-    },
+    },*/
 
     // External APIs
     EXTERNAL_APIS: {
