@@ -4,7 +4,49 @@ const { calculateEstimatedGDP } = require('../utils/gdpCalculator');
 /**
  * Process and prepare country data for database storage
  */
+/**
+ * Process and prepare country data for database storage
+ */
 function processCountryData(country, exchangeRates) {
+    // Format timestamp for MySQL DATETIME format (YYYY-MM-DD HH:MM:SS)
+    const now = new Date();
+    const timestamp = now.toISOString().slice(0, 19).replace('T', ' ');
+
+    // Extract currency code
+    let currencyCode = null;
+    let exchangeRate = null;
+    let estimatedGdp = null;
+
+    if (country.currencies && country.currencies.length > 0) {
+        currencyCode = country.currencies[0].code;
+
+        // Find exchange rate for this currency
+        if (exchangeRates[currencyCode]) {
+            exchangeRate = exchangeRates[currencyCode];
+            estimatedGdp = calculateEstimatedGDP(country.population, exchangeRate);
+        }
+    }
+
+    // If no currencies, set GDP to 0 as per spec
+    if (!country.currencies || country.currencies.length === 0) {
+        estimatedGdp = 0;
+    }
+
+    return {
+        name: country.name,
+        capital: country.capital || null,
+        region: country.region || null,
+        population: country.population,
+        currency_code: currencyCode,
+        exchange_rate: exchangeRate,
+        estimated_gdp: estimatedGdp,
+        flag_url: country.flag || null,
+        last_refreshed_at: timestamp
+    };
+}
+
+
+function processCountryDataOld(country, exchangeRates) {
     const timestamp = new Date().toISOString();
 
     // Extract currency code
